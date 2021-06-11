@@ -1,22 +1,26 @@
 package com.willow.race;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 public class RaceResultsService {
-    private Collection<Client> clients = new HashSet<>();
+    private Map<Client, Set<Category>> clients= new HashMap<>();
 
-    public void addSubscriber(Client client) {
-        clients.add(client);
+    public void addSubscriber(Client client, Set<Category> categories) {
+        clients.put(client, categories);
     }
 
     public void send(Message message) {
-        for(Client client: clients) {
-            client.receive(message);
-        }
+        clients.forEach(
+                (client, categories) -> {
+                    if(categories.contains(message.getCategory())){
+                        client.receive(message);
+                    }
+                }
+        );
+
     }
 
-    public void removeSubscriber(Client client) {
-        clients.remove(client);
+    public Set<Category> removeSubscriber(Client client) {
+        return clients.remove(client);
     }
 }
