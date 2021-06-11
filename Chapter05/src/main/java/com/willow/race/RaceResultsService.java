@@ -1,10 +1,10 @@
 package com.willow.race;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 public class RaceResultsService {
-    private Collection<Client> clients = new ArrayList<>();
+    private Collection<Client> clients = new HashSet<>();
 
     public void addSubscriber(Client client) {
         clients.add(client);
@@ -14,5 +14,9 @@ public class RaceResultsService {
         for(Client client: clients) {
             client.receive(message);
         }
+    }
+
+    public void removeSubscriber(Client client) {
+        clients.remove(client);
     }
 }
