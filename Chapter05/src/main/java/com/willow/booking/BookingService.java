@@ -24,4 +24,10 @@ public class BookingService {
     public boolean book(String id) {
         return clasrooms.stream().filter(classRoom -> classRoom.getId().equals(id)).count() == 1;
     }
+
+    public boolean book(int capacity, Equipment equipment) {
+        return clasrooms.stream().filter(classRoom -> classRoom.getCapacity() == capacity)
+                .filter(classRoom -> classRoom.getEquipments().stream().filter(
+                        equipmentToCheck -> equipmentToCheck.equals(equipment)).count() == 1).count() == 1;
+    }
 }

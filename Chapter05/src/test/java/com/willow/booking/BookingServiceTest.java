@@ -77,6 +77,20 @@ public class BookingServiceTest{
         assertThat(isBooked).isFalse();
     }
 
+    @Test
+    void bookWithRestrictionsShouldReturnTrueIfOk(){
+        boolean isBooked = bookingService.book(CAPACITY1, Equipment.PROJECTOR);
+
+        assertThat(isBooked).isTrue();
+    }
+
+    @Test
+    void bookWithRestrictionsShouldReturnFalseIfNotFound(){
+        boolean isBooked = bookingService.book(CAPACITY2, Equipment.PROJECTOR);
+
+        assertThat(isBooked).isFalse();
+    }
+
 
 
     private void prepareClassRoomMock(ClassRoom classRoom, String id, int capacity, List<Equipment> equipments,
