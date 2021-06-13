@@ -7,8 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class BookingServiceTest{
     private static final String DAY1 = "Monday, 14th of June";
@@ -31,6 +30,7 @@ public class BookingServiceTest{
     private BookingService bookingService;
     private ClassRoom classRoom1 = mock(ClassRoom.class);
     private ClassRoom classRoom2 = mock(ClassRoom.class);
+    private Support support = mock(Support.class);
 
     @BeforeEach
     void setUp(){
@@ -41,7 +41,7 @@ public class BookingServiceTest{
 
         bookingService = new BookingService(Arrays.asList(
             classRoom1, classRoom2
-        ));
+        ), support);
     }
 
 
@@ -68,6 +68,7 @@ public class BookingServiceTest{
         boolean isBooked = bookingService.book(ID1);
 
         assertThat(isBooked).isTrue();
+        verify(support).notifyBooking(ID1);
     }
 
     @Test
@@ -75,6 +76,7 @@ public class BookingServiceTest{
         boolean isBooked = bookingService.book(ID_NOT_FOUND);
 
         assertThat(isBooked).isFalse();
+        verify(support, never()).notifyBooking(ID_NOT_FOUND);
     }
 
     @Test
@@ -82,6 +84,7 @@ public class BookingServiceTest{
         boolean isBooked = bookingService.book(CAPACITY1, Equipment.PROJECTOR);
 
         assertThat(isBooked).isTrue();
+        verify(support).notifyBooking(CAPACITY1, Equipment.PROJECTOR);
     }
 
     @Test
@@ -89,6 +92,7 @@ public class BookingServiceTest{
         boolean isBooked = bookingService.book(CAPACITY2, Equipment.PROJECTOR);
 
         assertThat(isBooked).isFalse();
+        verify(support, never()).notifyBooking(CAPACITY2, Equipment.PROJECTOR);
     }
 
 

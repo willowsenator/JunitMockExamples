@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 
 public class BookingService {
     List<ClassRoom> clasrooms = new ArrayList<>();
+    Support support;
 
-    public BookingService(List<ClassRoom> clasrooms){
+    public BookingService(List<ClassRoom> clasrooms, Support support){
         this.clasrooms.addAll(clasrooms);
+        this.support = support;
     }
 
     public List<ClassRoom> getClassRooms() {
@@ -22,12 +24,22 @@ public class BookingService {
     }
 
     public boolean book(String id) {
-        return clasrooms.stream().filter(classRoom -> classRoom.getId().equals(id)).count() == 1;
+        boolean isBooked = clasrooms.stream().filter(classRoom -> classRoom.getId().equals(id)).count() == 1;
+        if(isBooked){
+            support.notifyBooking(id);
+        }
+        return isBooked;
     }
 
     public boolean book(int capacity, Equipment equipment) {
-        return clasrooms.stream().filter(classRoom -> classRoom.getCapacity() == capacity)
+        boolean isBooked = clasrooms.stream().filter(classRoom -> classRoom.getCapacity() == capacity)
                 .filter(classRoom -> classRoom.getEquipments().stream().filter(
                         equipmentToCheck -> equipmentToCheck.equals(equipment)).count() == 1).count() == 1;
+
+        if(isBooked){
+            support.notifyBooking(capacity, equipment);
+        }
+
+        return isBooked;
     }
 }
