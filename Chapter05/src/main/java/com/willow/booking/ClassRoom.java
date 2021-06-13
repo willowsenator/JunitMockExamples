@@ -8,5 +8,5 @@ public interface ClassRoom {
    int getCapacity();
    List<Equipment> getEquipments();
    String getDay();
-   String hourlyTimeSlot();
+   String getTimeSlot();
 }

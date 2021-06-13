@@ -11,6 +11,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class BookingServiceTest{
+    private static final String DAY1 = "Monday, 14th of June";
+    private static final String DAY2 = "Monday, 14th of June";
+    private static final String TIME_SLOT1 = "from 12 to 13 pm";
+    private static final String TIME_SLOT2 = "from 10 to 11 am";
+    private static final String ID1 = "A1";
+    private static final String ID2 = "A2";
+    private static final int CAPACITY1 = 20;
+    private static final int CAPACITY2 = 10;
+    private static final List<Equipment> EQUIPMENT1 = Arrays.asList(
+            Equipment.PROJECTOR, Equipment.MICROPHONE, Equipment.WHITEBOARD
+    );
+    private static final List<Equipment> EQUIPMENT2 = Arrays.asList(
+            Equipment.WHITEBOARD, Equipment.MICROPHONE
+    );
+
+    private static final String ID_NOT_FOUND = "B3";
+
     private BookingService bookingService;
     private ClassRoom classRoom1 = mock(ClassRoom.class);
     private ClassRoom classRoom2 = mock(ClassRoom.class);
@@ -18,12 +35,8 @@ public class BookingServiceTest{
     @BeforeEach
     void setUp(){
 
-        prepareClassRoomMock(classRoom1, "A1", 20, Arrays.asList(
-                Equipment.PROJECTOR, Equipment.MICROPHONE, Equipment.WHITEBOARD
-        ));
-        prepareClassRoomMock(classRoom2, "A2", 10, Arrays.asList(
-               Equipment.MICROPHONE, Equipment.WHITEBOARD
-        ));
+        prepareClassRoomMock(classRoom1, ID1, CAPACITY1, EQUIPMENT1, DAY1, TIME_SLOT1 );
+        prepareClassRoomMock(classRoom2, ID2, CAPACITY2, EQUIPMENT2, DAY2, TIME_SLOT2 );
 
 
         bookingService = new BookingService(Arrays.asList(
@@ -33,16 +46,43 @@ public class BookingServiceTest{
 
 
     @Test
-    void listClassroomsShouldReturnAllExistingClassrooms(){
-        List<ClassRoom> classRooms = bookingService.getAllClassRooms();
+    void listClassRoomsShouldReturnAllExistingClassrooms(){
+        List<ClassRoom> classRooms = bookingService.getClassRooms();
 
         assertThat(classRooms).isNotNull();
         assertThat(classRooms.size()).isEqualTo(2);
     }
 
-    private void prepareClassRoomMock(ClassRoom classRoom, String id, int capacity, List<Equipment> equipments) {
+    @Test
+    void listClassRoomsShouldReturnClassRoomsFilteredByDayAndTimeSlot(){
+        List<ClassRoom> classRooms = bookingService.getClassRooms(DAY1, TIME_SLOT1);
+
+        assertThat(classRooms).isNotNull();
+        assertThat(classRooms.size()).isEqualTo(1);
+        assertThat(classRooms.get(0).getDay()).isEqualTo(DAY1);
+        assertThat(classRooms.get(0).getTimeSlot()).isEqualTo(TIME_SLOT1);
+    }
+
+    @Test
+    void bookShouldReturnTrueIfOK(){
+        boolean isBooked = bookingService.book(ID1);
+
+        assertThat(isBooked).isTrue();
+    }
+
+    @Test
+    void bookShouldReturnFalseIfNotFound(){
+        boolean isBooked = bookingService.book(ID_NOT_FOUND);
+
+        assertThat(isBooked).isFalse();
+    }
+
+    private void prepareClassRoomMock(ClassRoom classRoom, String id, int capacity, List<Equipment> equipments,
+                                      String day, String timeSlot) {
         when(classRoom.getId()).thenReturn(id);
         when(classRoom.getCapacity()).thenReturn(capacity);
         when(classRoom.getEquipments()).thenReturn(equipments);
+        when(classRoom.getDay()).thenReturn(day);
+        when(classRoom.getTimeSlot()).thenReturn(timeSlot);
     }
 }
