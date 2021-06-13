@@ -46,7 +46,7 @@ public class BookingServiceTest{
 
 
     @Test
-    void listClassRoomsShouldReturnAllExistingClassrooms(){
+    void listAllClassRoomsShouldReturnAllExistingClassrooms(){
         List<ClassRoom> classRooms = bookingService.getClassRooms();
 
         assertThat(classRooms).isNotNull();
@@ -54,7 +54,7 @@ public class BookingServiceTest{
     }
 
     @Test
-    void listClassRoomsShouldReturnClassRoomsFilteredByDayAndTimeSlot(){
+    void listClassRoomsByDayAndTimeSlotShouldReturnClassRoomsFilteredByDayAndTimeSlot(){
         List<ClassRoom> classRooms = bookingService.getClassRooms(DAY1, TIME_SLOT1);
 
         assertThat(classRooms).isNotNull();
@@ -64,18 +64,20 @@ public class BookingServiceTest{
     }
 
     @Test
-    void bookShouldReturnTrueIfOK(){
+    void bookByIdShouldReturnTrueIfOK(){
         boolean isBooked = bookingService.book(ID1);
 
         assertThat(isBooked).isTrue();
     }
 
     @Test
-    void bookShouldReturnFalseIfNotFound(){
+    void bookByIdShouldReturnFalseIfNotFound(){
         boolean isBooked = bookingService.book(ID_NOT_FOUND);
 
         assertThat(isBooked).isFalse();
     }
+
+
 
     private void prepareClassRoomMock(ClassRoom classRoom, String id, int capacity, List<Equipment> equipments,
                                       String day, String timeSlot) {
