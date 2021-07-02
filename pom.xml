@@ -12,14 +12,15 @@
         <module>Chapter03</module>
         <module>Chapter04</module>
         <module>Chapter05</module>
+        <module>Chapter06</module>
     </modules>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <junit.version>5.7.1</junit.version>
-        <assertJ.version>3.19.0</assertJ.version>
-        <mockito.version>3.11.0</mockito.version>
+        <junit.version>5.7.2</junit.version>
+        <assertJ.version>3.20.2</assertJ.version>
+        <mockito.version>3.11.2</mockito.version>
     </properties>
     <dependencies>
         <!-- Junit 5 -->
