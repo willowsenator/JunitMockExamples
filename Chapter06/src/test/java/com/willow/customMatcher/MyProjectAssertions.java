@@ -1,7 +1,5 @@
-package com.willow.customMatcher.assertions;
+package com.willow.customMatcher;
 
-import com.willow.customMatcher.Book;
-import com.willow.customMatcher.Movie;
 import org.assertj.core.api.Assertions;
 
 public class MyProjectAssertions extends Assertions {

@@ -1,8 +1,7 @@
-package com.willow.customMatcher.assertions;
+package com.willow.customMatcher;
 
 import com.willow.customMatcher.Book;
 import org.assertj.core.api.AbstractAssert;
-import org.assertj.core.api.Assertions;
 
 public class BookAssert extends AbstractAssert<BookAssert, Book> {
    public BookAssert(Book actual){

@@ -3,7 +3,7 @@ package com.willow.customMatcher;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-import static com.willow.customMatcher.assertions.BookAssert.assertThat;
+import static com.willow.customMatcher.BookAssert.assertThat;
 
 public class BookConditionTest {
     private static final String ENGLISH = "English";

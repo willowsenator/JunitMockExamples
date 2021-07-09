@@ -2,7 +2,7 @@ package com.willow.customMatcher;
 
 import org.junit.jupiter.api.Test;
 
-import static com.willow.customMatcher.assertions.MyProjectAssertions.assertThat;
+import static com.willow.customMatcher.MyProjectAssertions.assertThat;
 
 public class OneEntryPointTest {
     @Test

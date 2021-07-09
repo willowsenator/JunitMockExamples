@@ -1,4 +1,4 @@
-package com.willow.customMatcher.assertions;
+package com.willow.customMatcher;
 
 import com.willow.customMatcher.Movie;
 import org.assertj.core.api.AbstractAssert;
