@@ -1,6 +1,5 @@
 package com.willow.customMatcher;
 
-import com.willow.customMatcher.Book;
 import org.assertj.core.api.AbstractAssert;
 
 public class BookAssert extends AbstractAssert<BookAssert, Book> {
@@ -14,7 +13,6 @@ public class BookAssert extends AbstractAssert<BookAssert, Book> {
 
    public BookAssert hasTitle(String title){
        isNotNull();
-
        return this;
    }
 }
