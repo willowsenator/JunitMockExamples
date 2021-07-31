@@ -20,9 +20,7 @@ public class HelpDesk {
 
         if(Calendar.FRIDAY == dayOfWeek){
             int hour = cal.get(Calendar.HOUR_OF_DAY);
-            if(hour > EOB_HOUR){
-                return false;
-            }
+            return hour <= EOB_HOUR;
         }
         return true;
     }
