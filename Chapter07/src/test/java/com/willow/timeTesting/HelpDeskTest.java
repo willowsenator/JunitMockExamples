@@ -52,7 +52,7 @@ class HelpDeskTest {
 
    @ParameterizedTest
    @MethodSource("daysOfWeek")
-   void shouldReturnTrueWhenNotWeekendAndHourEqualTo17(int dayOfWeek){
+   void shouldReturnTrueWhenNoWeekendAndHourEqualTo17(int dayOfWeek){
        when(timeProvider.getTime()).thenReturn(getCalendar(dayOfWeek, HelpDesk.EOB_HOUR));
 
        assertThat(helpDesk.willHandleIssue(issue)).isTrue();
