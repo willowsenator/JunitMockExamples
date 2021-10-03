@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Exercise_3_11_3Test {
 
-    private static Map<String, String> reversedMap = new HashMap<>();
+    private static final Map<String, String> reversedMap = new HashMap<>();
 
     static{
         reversedMap.put("", "");

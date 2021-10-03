@@ -1,9 +1,5 @@
 package com.willow;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 public class FahrToCelcConverter {
     private FahrToCelcConverter(){
 

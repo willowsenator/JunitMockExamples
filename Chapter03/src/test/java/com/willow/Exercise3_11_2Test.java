@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise3_11_2Test {
     @Test
     void learnAssertJ(){
-        var var = new String("2.5");
+        var var = "2.5";
         assertThat(var).isEqualTo(var);
     }
 }
