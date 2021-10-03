@@ -14,6 +14,7 @@
         <module>Chapter05</module>
         <module>Chapter06</module>
         <module>Chapter07</module>
+        <module>Chapter08</module>
     </modules>
 
     <properties>
@@ -22,6 +23,7 @@
         <junit.version>5.7.2</junit.version>
         <assertJ.version>3.20.2</assertJ.version>
         <mockito.version>3.11.2</mockito.version>
+        <junit-quickcheck.version>1.0</junit-quickcheck.version>
     </properties>
     <dependencies>
         <!-- Junit 5 -->
@@ -58,6 +60,20 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Junit-QuickCheck - Property-based testing -->
+        <dependency>
+            <groupId>com.pholser</groupId>
+            <artifactId>junit-quickcheck-core</artifactId>
+            <version>${junit-quickcheck.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.pholser</groupId>
+            <artifactId>junit-quickcheck-generators</artifactId>
+            <version>${junit-quickcheck.version}</version>
             <scope>test</scope>
         </dependency>
 
